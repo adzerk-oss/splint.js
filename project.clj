@@ -2,7 +2,8 @@
   :description "Persistent Data Structures for JavaScript"
 
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-2227"]]
+                 [org.clojure/clojurescript "0.0-2227"]
+                 [tailrecursion/javelin "3.3.2"]]
 
   :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]]
 

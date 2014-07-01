@@ -15,10 +15,12 @@
     list vector array-map hash-map zipmap set sorted-set keyword symbol
     sorted-set-by sorted-map sorted-map-by
     sum inc dec even? odd? subseq
-    apply])
+    apply
+    atom add-watch])
   (:use-macros [mori.macros :only [make-inspectable]])
   (:require [clojure.set :as set]
-            [clojure.core.reducers :as reducers]))
+            [clojure.core.reducers :as reducers]
+            [tailrecursion.javelin :as javelin]))
 
 (def ^:export apply cljs.core/apply)
 (def ^:export count cljs.core/count)
@@ -212,6 +214,18 @@
       (js/Proxy.create handler))
     (throw (js/Error. "ES6 Proxy not supported!"))))
 
+;; Reference types, functions
+
+(def ^:export atom      cljs.core/atom)
+(def ^:export add-watch cljs.core/add-watch)
+(def ^:export reset     cljs.core/reset!)
+(def ^:export swap      cljs.core/swap!)
+
+;; Javelin
+
+(def ^:export cell    tailrecursion.javelin/cell)
+(def ^:export formula tailrecursion.javelin/formula)
+
 ;; =============================================================================
 ;; Node.js Inspection support
 
@@ -241,5 +255,6 @@
   cljs.core.Keyword
   cljs.core.Symbol
   cljs.core.PersistentQueue
-  cljs.core.PersistentQueueSeq)
+  cljs.core.PersistentQueueSeq
+  tailrecursion.javelin.Cell)
 
