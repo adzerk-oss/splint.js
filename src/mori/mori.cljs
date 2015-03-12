@@ -74,6 +74,7 @@
 (mori-export addWatch  cljs.core/add-watch)
 (mori-export reset     cljs.core/reset!)
 (mori-export swap      cljs.core/swap!)
+(mori-export deref     cljs.core/deref)
 
 ;; Javelin
 
