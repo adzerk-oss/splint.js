@@ -1,6 +1,6 @@
 (ns mori
   (:refer-clojure :exclude
-   [count deref distinct empty first second next rest seq conj cons find nth last assoc dissoc
+   [atom count deref distinct empty first second next rest seq conj cons find nth last assoc dissoc
     get-in update-in assoc-in fnil disj pop peek hash get empty? reverse
     take drop take-nth partition partition-all partition-by iterate
     into merge merge-with subvec
@@ -73,13 +73,15 @@
 
 (mori-export addWatch  cljs.core/add-watch)
 (mori-export reset     cljs.core/reset!)
+(mori-export atom      cljs.core/atom)
 (mori-export swap      cljs.core/swap!)
 (mori-export deref     cljs.core/deref)
 
 ;; Javelin
 
-(mori-export cell    tailrecursion.javelin/cell)
-(mori-export formula tailrecursion.javelin/formula)
+(mori-export cell        tailrecursion.javelin/cell)
+(mori-export formula     tailrecursion.javelin/formula)
+(mori-export destroyCell tailrecursion.javelin/destroy-cell!)
 
 (defn sequential-or-array? [x]
   (or (array? x)
