@@ -12,7 +12,7 @@
     transduce eduction sequence dedupe completing
     range repeat repeatedly sort sort-by
     into-array
-    partial comp juxt
+    partial comp complement juxt
     identity constantly
     list vector vec array-map hash-map zipmap set sorted-set keyword symbol
     sorted-set-by sorted-map sorted-map-by
@@ -82,6 +82,8 @@
 (mori-export cell        tailrecursion.javelin/cell)
 (mori-export formula     tailrecursion.javelin/formula)
 (mori-export destroyCell tailrecursion.javelin/destroy-cell!)
+(mori-export isCell      tailrecursion.javelin/cell?)
+(mori-export isInput     tailrecursion.javelin/input?)
 
 (defn sequential-or-array? [x]
   (or (array? x)
@@ -188,10 +190,17 @@
 (mori-export lte cljs.core/<=)
 (mori-export compare cljs.core/compare)
 
+(defn ^:export truth [x]
+  (if x true false))
+
+(defn ^:export isNull [x]
+  (= x nil))
+
 ;; HOFs
 
 (mori-export partial cljs.core/partial)
 (mori-export comp cljs.core/comp)
+(mori-export complement cljs.core/complement)
 
 (defn ^:export pipeline [& args]
   (reduce #(%2 %1) args))
