@@ -22,3 +22,5 @@ out-*
 *init.clj
 .DS_Store
 .idea
+.nrepl-history
+.nrepl-port
