@@ -1,13 +1,15 @@
-language: node_js
-branches:
-  only:
-    - master
-node_js:
-  - 0.8
-  - 0.10
-  - 0.11
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install openjdk-7-jre
-  - sudo wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -O /usr/bin/lein
-  - sudo chmod +x /usr/bin/lein
+language: clojure
+jdk:
+- oraclejdk8
+install:
+- wget -O boot https://github.com/boot-clj/boot/releases/download/2.0.0-rc13/boot.sh
+- chmod 755 boot
+- export PATH="$PWD:$PATH"
+script: boot build
+deploy:
+  provider: releases
+  api_key:
+    secure: jQh630CddUycC4lFCNs3f93+j34FGe3J0Dcem6zYf8MT7sNmD6bAIWnZTO28hWn3nFMSs1URUJjOyoI81m88qQlXEps9eDVjqsFKVZeeZThM0r/XPTX0ZFQiF1nPs1EpLBXpYA1KskmsPouN6W63Fc4k4AMTPO2u5maf8s+QKa0=
+  file: target/splint.min.js
+  on:
+    repo: adzerk/splint
