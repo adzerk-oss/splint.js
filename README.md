@@ -1,4 +1,4 @@
-# splint <img src="https://travis-ci.org/adzerk-oss/splint.svg?branch=master" alt="build status"></img>
+# splint <a href="https://travis-ci.org/adzerk-oss/splint"><img src="https://travis-ci.org/adzerk-oss/splint.svg?branch=master" alt="build status"></img></a>
 
 splint is a set of [ClojureScript] functions assembled for use in
 unstructured "[spaghetti code]" JavaScript applications.  These kinds
