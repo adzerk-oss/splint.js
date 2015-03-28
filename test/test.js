@@ -17,7 +17,7 @@ jQuery(function($) {
            "even newer text");
 
     assert("ClojureScript functions basically work",
-           get(apply(hashMap, mapcat(juxt(str, identity), range(3))), "2")
+           get(apply(hashMap, mapcat(juxt(str, identity), range(3))), "2"),
            2);
   }
 })
