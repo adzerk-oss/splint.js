@@ -54,7 +54,7 @@
 
 (defn wrap-export
   [name source]
-  (format "(function(definition){if(typeof exports===\"object\"){module.exports=definition();}else if(typeof define===\"function\"&&define.amd){define(definition);}else{%s=definition();}})(function(){return function(){%s;return this.%s;}.call({});});)"
+  (format "(function(definition){if(typeof exports===\"object\"){module.exports=definition();}else if(typeof define===\"function\"&&define.amd){define(definition);}else{%s=definition();}})(function(){return function(){%s;return this.%s;}.call({});});"
           name
           source
           name))
