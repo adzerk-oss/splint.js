@@ -5,7 +5,6 @@
 (set-env! :dependencies '[[adzerk/boot-cljs "0.0-2814-3"]
                           [tailrecursion/javelin "3.7.2"]
                           [boot/core "2.0.0-rc13" :scope "provided"]
-                          [org.clojure/core.incubator "0.1.3"]
                           [net.sourceforge.htmlunit/htmlunit "2.15"]]
           :source-paths #{"src/" "test/"}
           :splint {:version +version+}
@@ -46,7 +45,7 @@
         (util/info "Testing with jQuery version %s\n" version)
         (spit test-page
               (fill-template (slurp (->url "testpage.html" (input-files fileset)))
-                             {"JQUERY_URL"        (format "http://code.jquery.com/jquery-%s.min.js" version)
+                             {"JQUERY_URL"        (->url (format "jquery-%s.min.js" version) (input-files fileset))
                               "SPLINT_URL"        (->url "splint.min.js" (output-files fileset))
                               "JQUERY_SPLINT_URL" (->url "jquery.splint.js" (output-files fileset))
                               "TEST_JS_URL"       (->url "test.js" (input-files fileset))}))
