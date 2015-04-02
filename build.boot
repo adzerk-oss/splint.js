@@ -52,11 +52,36 @@
         (.getPage (web-client) test-page))
       fileset)))
 
+(defn wrap-export
+  [name source]
+  (format "(function(definition){if(typeof exports===\"object\"){module.exports=definition();}else if(typeof define===\"function\"&&define.amd){define(definition);}else{%s=definition();}})(function(){return function(){%s;return this.%s;}.call({});});)"
+          name
+          source
+          name))
+  
+(deftask wrap
+  [e export-name NAME str "Name to export script content as."
+   b bare-script NAME str "Name of the bare script to wrap."
+   w wrapped-script NAME str "Name of the wrapped script to create."]
+  (with-pre-wrap fs
+    (util/info "Wrapping script in export...\n")
+    (let [tmp    (temp-dir!)
+          [js]   (by-name [bare-script] (input-files fs))]
+      (spit (io/file tmp wrapped-script)
+            (wrap-export export-name (slurp (tmpfile js))))
+      (-> fs
+          (add-resource tmp)
+          (rm [js])
+          commit!))))
+
 (deftask build
   []
   (comp (cljs :optimizations :advanced)
         (sift :to-source #{#"^out"})
-        (sift :move {#"^main.js" "splint.min.js"})
+        (sift :move {#"^main.js" "splint.min.js.bare"})
+        (wrap :export-name "splint"
+              :bare-script "splint.min.js.bare"
+              :wrapped-script "splint.min.js")
         (sift :to-resource #{#"jquery.splint.js"})))
 
 (task-options!
