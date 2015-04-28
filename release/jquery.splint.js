@@ -26,8 +26,9 @@
       });
     };
 
-    $.fn.toggle = liftMethod($.fn.toggle);
-    $.fn.text   = liftMethod($.fn.text);
+    $.fn.toggle      = liftMethod($.fn.toggle);
+    $.fn.toggleClass = liftMethod($.fn.toggleClass);
+    $.fn.text        = liftMethod($.fn.text);
 
     // Backward-compatible 'enable' function for jQuery, see
     // http://stackoverflow.com/a/1414366/3998203
