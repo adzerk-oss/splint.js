@@ -1,6 +1,6 @@
 #!/usr/bin/env boot
 
-(def +version+ "1.0.1")
+(def +version+ "1.0.2")
 
 (set-env! :dependencies '[[adzerk/boot-cljs "0.0-2814-3"]
                           [tailrecursion/javelin "3.7.2"]

@@ -6,7 +6,14 @@
       var valFn          = function(elem) { return elem.is(":checkbox") ? elem.attr("checked") : elem.val(); };
       var returnCell     = cell(valFn(this));
       var resetFn        = function() { reset(returnCell, valFn($(this))); };
-      for(idx in events) { this[events[idx]](resetFn); }
+      for(idx in events) {
+        var f = this[events[idx]];
+        if(f === undefined) {
+          this[events[idx]] = resetFn;
+        } else {
+          f.call(this, resetFn);
+        }
+      }
       return returnCell;
     };
 
