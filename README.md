@@ -1,6 +1,6 @@
-# splint <a href="https://travis-ci.org/adzerk-oss/splint"><img src="https://travis-ci.org/adzerk-oss/splint.svg?branch=master" alt="build status"></img></a>
+# splint.js <a href="https://travis-ci.org/adzerk-oss/splint.js"><img src="https://travis-ci.org/adzerk-oss/splint.js.svg?branch=master" alt="build status"></img></a>
 
-splint is a set of [ClojureScript] functions assembled for use in
+splint.js is a set of [ClojureScript] functions assembled for use in
 unstructured "[spaghetti code]" JavaScript applications.  These kinds
 of applications will eventually need to either be discarded or
 rewritten.  For when you can't yet do either, there's splint.
@@ -10,7 +10,7 @@ collections, splint includes [Javelin] for spreadsheet-like reactive
 programming.  Javelin can be used to incrementally consolidate and
 subsume callbacks and global variables.
 
-At the very least, using splint probably won't make what you have any
+At the very least, using splint.js probably won't make what you have any
 worse.
 
 ## Use
