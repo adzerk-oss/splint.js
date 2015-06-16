@@ -18,6 +18,7 @@ worse.
 * Grab [release/splint.min.js](https://raw.githubusercontent.com/adzerk-oss/splint/master/release/splint.min.js) and copy it to your project.
 * See [splint.cljs](src/splint.cljs) for the list of available functions.
 * The optional [release/jquery.splint.js](https://raw.githubusercontent.com/adzerk-oss/splint/master/release/jquery.splint.js) provides some convenient jQuery extensions.
+* Read [Splint.js: Functional first-aid for legacy jQuery applications](http://adzerk.com/blog/2015/06/splint-functional-first-aid-jquery/) blog post for more info and usage examples.
 
 ## Build
 
