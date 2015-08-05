@@ -81,6 +81,7 @@
 ;; Javelin
 
 (splint-export cell        tailrecursion.javelin/cell)
+(splint-export dosync      tailrecursion.javelin/dosync*)
 (splint-export formula     tailrecursion.javelin/formula)
 (splint-export destroyCell tailrecursion.javelin/destroy-cell!)
 (splint-export isCell      tailrecursion.javelin/cell?)
