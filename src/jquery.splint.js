@@ -1,20 +1,32 @@
 (function ($) {
   with(splint) {
-    // Returns a cell backed by the value of this form input.
-    $.fn.cellOf = function() {
-      var events         = arguments.length ? arguments : ["change"]
-      var valFn          = function(elem) { return elem.is(":checkbox") ? elem.attr("checked") : elem.val(); };
-      var returnCell     = cell(valFn(this));
-      var resetFn        = function() { reset(returnCell, valFn($(this))); };
+
+    var updateCellFrom = function(jqObj, returnCell, events) {
+      var valFn   = function(elem) { return elem.is(":checkbox") ? elem.attr("checked") : elem.val(); };
+      var resetFn = function() { reset(returnCell, valFn($(jqObj))); };
+      resetFn();
       for(idx in events) {
-        var f = this[events[idx]];
+        var f = jqObj[events[idx]];
         if(f === undefined) {
-          this[events[idx]] = resetFn;
+          jqObj[events[idx]] = resetFn;
         } else {
-          f.call(this, resetFn);
+          f.call(jqObj, resetFn);
         }
       }
       return returnCell;
+    };
+
+    // Returns a cell backed by the value of this form input.
+    $.fn.cellOf = function() { /* (& events) */
+      return updateCellFrom(this, cell(null), arguments.length ? arguments : ["change"]);
+    };
+
+    // Backs an existing cell with the value of this form input.
+    $.fn.updateCell = function() { /* (targetCell & events) */
+      var args       = Array.prototype.slice.call(arguments);
+      var targetCell = args[0];
+      var events     = args.length > 1 ? args.slice(1) : ["change"];
+      return updateCellFrom(this, targetCell, events);
     };
 
     // Returns a version of any jQuery method that can accept and
