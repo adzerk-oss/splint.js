@@ -82,8 +82,7 @@
         (wrap :export-name "splint"
               :bare-script "splint.min.js.bare"
               :wrapped-script "splint.min.js")
-        (sift :to-resource #{#"jquery.splint.js"})
-        (sift :include #{#"splint.min.js" #"jquery.splint.js"})))
+        (sift :to-resource #{#"jquery.splint.js"})))
 
 (task-options!
  test {:jquery-versions #{"1.4.4" "1.11.2" "2.1.3"}})

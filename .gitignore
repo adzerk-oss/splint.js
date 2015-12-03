@@ -24,3 +24,4 @@ out-*
 .idea
 .nrepl-history
 .nrepl-port
+/release/main.out
