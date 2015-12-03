@@ -8,7 +8,7 @@
     interpose interleave concat flatten
     keys select-keys vals
     prim-seq lazy-seq keep keep-indexed
-    map mapcat map-indexed reduce reduce-kv filter remove some every? equiv
+    map mapcat map-indexed reduce reductions reduce-kv filter remove some every? equiv
     transduce eduction sequence dedupe completing
     range repeat repeatedly sort sort-by
     into-array not
@@ -21,7 +21,7 @@
     apply])
   (:use-macros [splint.macros :only [make-inspectable splint-export splint-version]])
   (:require [clojure.set :as set]
-            tailrecursion.javelin))
+            javelin.core))
 
 (splint-export apply cljs.core/apply)
 (splint-export count cljs.core/count)
@@ -80,12 +80,12 @@
 
 ;; Javelin
 
-(splint-export cell        tailrecursion.javelin/cell)
-(splint-export dosync      tailrecursion.javelin/dosync*)
-(splint-export formula     tailrecursion.javelin/formula)
-(splint-export destroyCell tailrecursion.javelin/destroy-cell!)
-(splint-export isCell      tailrecursion.javelin/cell?)
-(splint-export isInput     tailrecursion.javelin/input?)
+(splint-export cell        javelin.core/cell)
+(splint-export dosync      javelin.core/dosync*)
+(splint-export formula     javelin.core/formula)
+(splint-export destroyCell javelin.core/destroy-cell!)
+(splint-export isCell      javelin.core/cell?)
+(splint-export isInput     javelin.core/input?)
 
 (def ^:export version (splint-version))
 
@@ -109,6 +109,7 @@
 (splint-export mapIndexed cljs.core/map-indexed)
 (splint-export mapcat cljs.core/mapcat)
 (splint-export reduce cljs.core/reduce)
+(splint-export reductions cljs.core/reductions)
 (splint-export reduceKV cljs.core/reduce-kv)
 (splint-export keep cljs.core/keep)
 (splint-export keepIndexed cljs.core/keep-indexed)
@@ -286,4 +287,4 @@
   cljs.core.Symbol
   cljs.core.PersistentQueue
   cljs.core.PersistentQueueSeq
-  tailrecursion.javelin.Cell)
+  javelin.core.Cell)

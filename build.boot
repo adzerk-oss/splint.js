@@ -1,11 +1,11 @@
 #!/usr/bin/env boot
 
-(def +version+ "1.0.2")
+(def +version+ "1.1.0")
 
-(set-env! :dependencies '[[adzerk/boot-cljs "0.0-2814-3"]
-                          [tailrecursion/javelin "3.7.2"]
-                          [boot/core "2.0.0-rc13" :scope "provided"]
-                          [net.sourceforge.htmlunit/htmlunit "2.15"]]
+(set-env! :dependencies (conj '[[adzerk/boot-cljs "1.7.170-3"]
+                                [hoplon/javelin "3.8.4"]
+                                [net.sourceforge.htmlunit/htmlunit "2.15"]]
+                              ['boot/core *boot-version* :scope "provided"])
           :source-paths #{"src/" "test/"}
           :splint {:version +version+}
           :target-path "release")
@@ -31,7 +31,7 @@
   (->> (or (seq (by-name [name] files))
            (throw (ex-info "File not found, can't create URL" {:name name})))
        first
-       tmpfile
+       tmp-file
        .toURI
        .toURL))
 
@@ -39,7 +39,7 @@
 (deftask test
   [j jquery-versions VERSION #{str} "Versions of jQuery to test with; default is 1.4.4"]
   (let [jquery-versions (or jquery-versions #{"1.4.4"})
-        test-page (.. (io/file (temp-dir!) "testpage_out.html") toURI toURL)]
+        test-page (.. (io/file (tmp-dir!) "testpage_out.html") toURI toURL)]
     (with-pre-wrap fileset
       (doseq [version jquery-versions]
         (util/info "Testing with jQuery version %s\n" version)
@@ -58,17 +58,17 @@
           name
           source
           name))
-  
+
 (deftask wrap
   [e export-name NAME str "Name to export script content as."
    b bare-script NAME str "Name of the bare script to wrap."
    w wrapped-script NAME str "Name of the wrapped script to create."]
   (with-pre-wrap fs
     (util/info "Wrapping script in export...\n")
-    (let [tmp    (temp-dir!)
+    (let [tmp    (tmp-dir!)
           [js]   (by-name [bare-script] (input-files fs))]
       (spit (io/file tmp wrapped-script)
-            (wrap-export export-name (slurp (tmpfile js))))
+            (wrap-export export-name (slurp (tmp-file js))))
       (-> fs
           (add-resource tmp)
           (rm [js])
@@ -82,7 +82,8 @@
         (wrap :export-name "splint"
               :bare-script "splint.min.js.bare"
               :wrapped-script "splint.min.js")
-        (sift :to-resource #{#"jquery.splint.js"})))
+        (sift :to-resource #{#"jquery.splint.js"})
+        (sift :include #{#"splint.min.js" #"jquery.splint.js"})))
 
 (task-options!
  test {:jquery-versions #{"1.4.4" "1.11.2" "2.1.3"}})
