@@ -37,7 +37,7 @@ the same as Clojure.
 
 [ClojureScript]: https://github.com/clojure/clojurescript
 [spaghetti code]: http://en.wikipedia.org/wiki/Spaghetti_code
-[Javelin]: https://github.com/tailrecursion/javelin
+[Javelin]: https://github.com/hoplon/javelin
 [Boot]: http://boot-clj.com/
 [David Nolen]: http://swannodette.github.io/
 [mori]: https://github.com/swannodette/mori
